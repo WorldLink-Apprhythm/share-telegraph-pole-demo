@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4DLink埋め込みデモ</title>
+</head>
+<style>
+    body {
+        color: #fff;
+        background-color: #24ABE1;
+    }
+
+    h2 {
+        margin-bottom: 3px;
+    }
+</style>
+<body>
+    <h1 style="text-align: center;">4DLink ページ埋め込みデモ</h1>
+    <p style="text-align:center;">下記の画面は4DLinkのデータを表示しています。</p>
+    <div style="height: 500px; width: 800px; margin: 0 auto">
+        <h2>送電線A</h2>
+        <iframe id='embeded-tag' src='' height='100%' width='100%' style='border: none;'></iframe>
+    </div>
+    <div style="height: 500px; width: 800px; margin: 5rem auto">
+        <h2>送電線B</h2>
+        <iframe id='embeded-tag2' src='' height='100%' width='100%' style='border: none;'></iframe>
+    </div>
+   <script>
+        const iframeTag = document.getElementById('embeded-tag')
+        const iframeTag2 = document.getElementById('embeded-tag2')
+        window.onload = () => {
+            const url = new URL(location.href)
+            const params = new URLSearchParams(url.search);
+            const shareCode1 = params.get('code1');
+            const shareCode2 = params.get('code2');
+            const shareCode3 = params.get('code3');
+            const shareCode4 = params.get('code4');
+            iframeTag.src = `https://app.4dlink.com/auth/share/${shareCode1}/${shareCode2}`
+            iframeTag2.src = `https://app.4dlink.com/auth/share/${shareCode3}/${shareCode4}`
+        }
+   </script>
+</body>
+</html>
